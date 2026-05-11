@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(grep -l \"ZWYCIĘZCA\\\\|Zwycięzca\\\\|zwycięzca\" c:UsersJack CaveDocumentsFM google studioLast version/**/*.tsx)",
+      "Bash(find 'c:\\\\Users\\\\Jack Cave\\\\Documents\\\\FM google studio\\\\Last version' -path */node_modules -prune -o -type f \\\\\\(-name *squad* -o -name *player* -o -name *generation* \\\\\\) -print)",
+      "Bash(find 'c:\\\\Users\\\\Jack Cave\\\\Documents\\\\FM google studio\\\\Last version' -path */node_modules -prune -o -type f -name *data.ts -print)",
+      "Bash(find 'c:\\\\Users\\\\Jack Cave\\\\Documents\\\\FM google studio\\\\Last version' -path */node_modules -prune -o -type f -name *SquadGeneration* -print)",
+      "Bash(find 'c:\\\\Users\\\\Jack Cave\\\\Documents\\\\FM google studio\\\\Last version' -path */node_modules -prune -o -type f -name *GameContext* -print)",
+      "Bash(find 'c:\\\\Users\\\\Jack Cave\\\\Documents\\\\FM google studio\\\\Last version' -path */node_modules -prune -o -type f -name types.ts -print)",
+      "Bash(grep -E \"\\\\.\\(ts|tsx\\)$\")",
+      "Bash(grep -r processCLMatchDay 'c:\\\\Users\\\\Jack Cave\\\\Documents\\\\FM google studio\\\\Last version' --include=*.ts --include=*.tsx)",
+      "Bash(xargs grep:*)",
+      "Bash(grep -n \"PULPIT\\\\|← PULPIT\" /c/Users/Jack Cave/Documents/FM google studio/Last version/components/views/*.tsx)",
+      "Bash(grep -rli \"PULPIT\\\\|pulpit\\\\|wolni\\\\|transferowa\" 'c:/Users/Jack Cave/Documents/FM google studio/Last version' --include=*.tsx)",
+      "Bash(grep -rli \"FREE_AGENT\\\\|freeAgent\\\\|JobMarket\\\\|JOB_MARKET\" 'c:/Users/Jack Cave/Documents/FM google studio/Last version' --include=*.tsx)",
+      "Bash(grep -n \"startNewGame, saveManagerProfile\\\\|value={{\" \"c:/Users/Jack Cave/Documents/FM google studio/Last version/context/GameContext.tsx\")",
+      "Bash(find 'c:/Users/Jack Cave/Documents/FM google studio/Last version' -iname *playoff* -not -iname *.old -not -iname *copy* -not -iname *reference*)"
+    ]
+  }
+}

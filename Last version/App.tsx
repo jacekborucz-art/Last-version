@@ -1,0 +1,406 @@
+import React from 'react';
+import { GameProvider, useGame } from './context/GameContext';
+import { ViewState } from './types';
+import { StartMenu } from './components/views/StartMenu';
+import { TeamSelection } from './components/views/TeamSelection';
+import { SquadImportView } from './components/views/SquadImportView';
+import { Dashboard } from './components/views/Dashboard';
+import { LeagueTables } from './components/views/LeagueTables';
+import { MatchView } from './components/views/MatchView';
+import { MatchLiveView } from './components/views/MatchLiveView';
+import { PreMatchStudioView } from './components/views/PreMatchStudioView';
+import { SquadView } from './components/views/SquadView';
+import { ClubDetails } from './components/views/ClubDetails';
+import { HiddenLeagueViewer } from './components/views/HiddenLeagueViewer';
+import { PlayerCard } from './components/views/PlayerCard';
+import { RefereeCard } from './components/views/RefereeCard';
+import { RefereeListView } from './components/views/RefereeListView';
+import { LeagueStatsView } from './components/views/LeagueStatsView';
+import { CalendarDebugView } from './components/views/CalendarDebugView';
+import { PostMatchStudioView } from './components/views/PostMatchStudioView';
+import { ManagerCreation } from './components/views/ManagerCreation';
+import { GameManual } from './components/views/GameManual';
+import { TrainingView } from './components/views/TrainingView';
+import { CupDrawView } from './components/views/CupDrawView';
+import { MatchHistoryView } from './components/views/MatchHistoryView';
+import { JobMarketView } from './components/views/JobMarketView';
+import { TransferNewsView } from './components/views/TransferNewsView';
+import { AiMarketNewsView } from './components/views/AiMarketNewsView';
+import { PreMatchCupStudioView } from './PolishCupEngine/PreMatchCupStudioView';
+import { MatchLiveViewPolishCupSimulation } from './PolishCupEngine/MatchLiveViewPolishCupSimulation';
+import { PostMatchCupStudioView } from './PolishCupEngine/PostMatchCupStudioView';
+import { ScoreResultsPolishCup } from './PolishCupEngine/ScoreResultsPolishCup';
+import { CoachCard } from './components/views/CoachCard';
+import { EditorView } from './components/views/EditorView';
+import { ContractManagementView } from './components/views/ContractManagementView';
+import { FreeAgentNegotiationView } from './components/views/FreeAgentNegotiationView';
+import { TransferOfferView } from './components/views/TransferOfferView';
+import { TransferPlayerNegotiationView } from './components/views/TransferPlayerNegotiationView';
+import { IncomingOfferView } from './components/views/IncomingOfferView';
+import { CLDrawView } from './components/views/CLDrawView';
+import { CLGroupDrawView } from './components/views/CLGroupDrawView';
+import { PolishCupBracketView } from './components/views/PolishCupBracketView';
+import { PolishCupFinalistsView } from './PolishCupEngine/PolishCupFinalistsView';
+import { PostMatchCLStudioView } from './CLEngine/PostMatchCLStudioView';
+import { PostMatchEuropeanStudioView } from './CLEngine/PostMatchEuropeanStudioView';
+import { PreMatchCLStudioView } from './CLEngine/PreMatchCLStudioView';
+import { PreMatchCLLiveStudioView } from './CLEngine/PreMatchCLLiveStudioView';
+import { CLMatchLiveView } from './CLEngine/CLMatchLiveView';
+import { CLHistoryView } from './CLEngine/CLHistoryView';
+import { CLFinalDrawView } from './CLEngine/CLFinalDrawView';
+import { CLR16DrawView } from './components/views/CLR16DrawView';
+import { CLQFDrawView } from './components/views/CLQFDrawView';
+import { CLSFDrawView } from './components/views/CLSFDrawView';
+import { PreMatchCLFinalView } from './components/views/PreMatchCLFinalView';
+import { PostMatchCLFinalView } from './components/views/PostMatchCLFinalView';
+import { EuropeanClubsView } from './components/views/EuropeanClubsView';
+import NationalTeamResultsView from './components/views/NationalTeamResultsView';
+import WorldCupView from './components/views/WorldCupView';
+import WCDrawView from './components/views/WCDrawView';
+import { WCQPlayoffDrawView } from './components/views/WCQPlayoffDrawView';
+import { WCQPlayoffResultsView } from './components/views/WCQPlayoffResultsView';
+import UEFASuperCupView from './components/views/UEFASuperCupView';
+import { ELDrawView } from './LECupEngine/ELDrawView';
+import { ELR2QDrawView } from './LECupEngine/ELR2QDrawView';
+import { ELHistoryView } from './LECupEngine/ELHistoryView';
+import { PreMatchELStudioView } from './LECupEngine/PreMatchELStudioView';
+import { PreMatchELLiveStudioView } from './LECupEngine/PreMatchELLiveStudioView';
+import { ELMatchLiveView } from './LECupEngine/ELMatchLiveView';
+import { PostMatchELStudioView } from './LECupEngine/PostMatchELStudioView';
+import { CONFDrawView } from './LECupEngine/CONFDrawView';
+import { CONFR2QDrawView } from './LECupEngine/CONFR2QDrawView';
+import { CONFHistoryView } from './LECupEngine/CONFHistoryView';
+import { PreMatchCONFStudioView } from './LECupEngine/PreMatchCONFStudioView';
+import { PreMatchCONFLiveStudioView } from './LECupEngine/PreMatchCONFLiveStudioView';
+import { CONFMatchLiveView } from './LECupEngine/CONFMatchLiveView';
+import { PostMatchCONFStudioView } from './LECupEngine/PostMatchCONFStudioView';
+import { ELGroupDrawView } from './components/views/ELGroupDrawView';
+import { CONFGroupDrawView } from './LECupEngine/CONFGroupDrawView';
+import { CONFR16DrawView } from './LECupEngine/CONFR16DrawView';
+import { CONFQFDrawView } from './LECupEngine/CONFQFDrawView';
+import { CONFSFDrawView } from './LECupEngine/CONFSFDrawView';
+import { CONFFinalDrawView } from './LECupEngine/CONFFinalDrawView';
+import { ELR16DrawView } from './components/views/ELR16DrawView';
+import { ELQFDrawView } from './components/views/ELQFDrawView';
+import { ELSFDrawView } from './components/views/ELSFDrawView';
+import { ELFinalDrawView } from './components/views/ELFinalDrawView';
+import { GameNotification } from './components/ui/GameNotification';
+import { PlayoffDrawView } from './components/views/PlayoffDrawView';
+import { RelegationPlayoffMatch1View } from './components/views/RelegationPlayoffMatch1View';
+import { RelegationPlayoffMatch2View } from './components/views/RelegationPlayoffMatch2View';
+import { PromotionPlayoffSemiView } from './components/views/PromotionPlayoffSemiView';
+import { PromotionPlayoffFinalView } from './components/views/PromotionPlayoffFinalView';
+import { PreMatchPlayoffStudioView } from './PlayoffEngine/PreMatchPlayoffStudioView';
+import { PostMatchPlayoffStudioView } from './PlayoffEngine/PostMatchPlayoffStudioView';
+import { HospitalView } from './components/views/HospitalView';
+import { ReservesView } from './components/views/ReservesView';
+import { AcademyView } from './components/views/AcademyView';
+import { PreMatchFriendlyStudioView } from './components/views/PreMatchFriendlyStudioView';
+import { FriendlyMatchLiveView } from './components/views/FriendlyMatchLiveView';
+import { PostMatchFriendlyStudioView } from './components/views/PostMatchFriendlyStudioView';
+
+// Internal component to handle view switching
+const AppContent: React.FC = () => {
+  const { viewState, navigateTo } = useGame();
+
+  const renderView = () => {
+    switch (viewState) {
+
+      case ViewState.CL_HISTORY:
+  return <CLHistoryView />;
+case ViewState.EL_DRAW:
+  return <ELDrawView />;
+case ViewState.EL_R2Q_DRAW:
+  return <ELR2QDrawView />;
+case ViewState.EL_HISTORY:
+  return <ELHistoryView />;
+case ViewState.CONF_DRAW:
+  return <CONFDrawView />;
+case ViewState.CONF_R2Q_DRAW:
+  return <CONFR2QDrawView />;
+case ViewState.CONF_HISTORY:
+  return <CONFHistoryView />;
+case ViewState.CONF_GROUP_DRAW:
+  return <CONFGroupDrawView />;
+case ViewState.CONF_R16_DRAW:
+  return <CONFR16DrawView />;
+case ViewState.CONF_QF_DRAW:
+  return <CONFQFDrawView />;
+case ViewState.CONF_SF_DRAW:
+  return <CONFSFDrawView />;
+case ViewState.CONF_FINAL_DRAW:
+  return <CONFFinalDrawView />;
+case ViewState.EL_GROUP_DRAW:
+  return <ELGroupDrawView />;
+case ViewState.EL_R16_DRAW:
+  return <ELR16DrawView />;
+case ViewState.EL_QF_DRAW:
+  return <ELQFDrawView />;
+case ViewState.EL_SF_DRAW:
+  return <ELSFDrawView />;
+case ViewState.EL_FINAL_DRAW:
+  return <ELFinalDrawView />;
+case ViewState.PRE_MATCH_CL_STUDIO:
+  return <PreMatchCLStudioView />;
+
+case ViewState.PRE_MATCH_CL_LIVE_STUDIO:
+  return <PreMatchCLLiveStudioView />;
+
+case ViewState.MATCH_LIVE_CL:
+  return <CLMatchLiveView />;
+
+case ViewState.POST_MATCH_CL_STUDIO:
+  return <PostMatchCLStudioView />;
+
+case ViewState.POST_MATCH_EUROPEAN_STUDIO:
+  return <PostMatchEuropeanStudioView />;
+
+case ViewState.PRE_MATCH_EL_STUDIO:
+  return <PreMatchELStudioView />;
+
+case ViewState.PRE_MATCH_EL_LIVE_STUDIO:
+  return <PreMatchELLiveStudioView />;
+
+case ViewState.MATCH_LIVE_EL:
+  return <ELMatchLiveView />;
+
+case ViewState.POST_MATCH_EL_STUDIO:
+  return <PostMatchELStudioView />;
+
+case ViewState.PRE_MATCH_CONF_STUDIO:
+  return <PreMatchCONFStudioView />;
+
+case ViewState.PRE_MATCH_CONF_LIVE_STUDIO:
+  return <PreMatchCONFLiveStudioView />;
+
+case ViewState.MATCH_LIVE_CONF:
+  return <CONFMatchLiveView />;
+
+case ViewState.POST_MATCH_CONF_STUDIO:
+  return <PostMatchCONFStudioView />;
+
+case ViewState.NATIONAL_TEAM_RESULTS:
+  return <NationalTeamResultsView />;
+case ViewState.WC_DRAW:
+  return <WCDrawView />;
+case ViewState.WORLD_CUP:
+  return <WorldCupView />;
+case ViewState.WCQ_PLAYOFF_DRAW_VIEW:
+  return <WCQPlayoffDrawView />;
+case ViewState.WCQ_PLAYOFF_RESULTS_SF:
+  return <WCQPlayoffResultsView mode="SF" />;
+case ViewState.WCQ_PLAYOFF_RESULTS_FINAL:
+  return <WCQPlayoffResultsView mode="FINAL" />;
+case ViewState.PLAYOFF_DRAW:
+  return <PlayoffDrawView />;
+// ── BARAŻE O UTRZYMANIE ─────────────────────────────────────────────────
+case ViewState.RELEGATION_PLAYOFF_MATCH_1:
+  return <RelegationPlayoffMatch1View />;
+case ViewState.RELEGATION_PLAYOFF_MATCH_2:
+  return <RelegationPlayoffMatch2View />;
+case ViewState.PROMOTION_PLAYOFF_SEMI_VIEW:
+  return <PromotionPlayoffSemiView />;
+case ViewState.PROMOTION_PLAYOFF_FINAL_VIEW:
+  return <PromotionPlayoffFinalView />;
+// ── BARAŻE — INTERAKTYWNY MECZ GRACZA ───────────────────────────────────
+case ViewState.PRE_MATCH_PLAYOFF_STUDIO:
+  return <PreMatchPlayoffStudioView />;
+case ViewState.MATCH_LIVE_PLAYOFF:
+  return <MatchLiveViewPolishCupSimulation />;
+case ViewState.POST_MATCH_PLAYOFF_STUDIO:
+  return <PostMatchPlayoffStudioView />;
+case ViewState.HOSPITAL_VIEW:
+  return <HospitalView />;
+      case ViewState.RESERVES_VIEW:
+        return <ReservesView />;
+      case ViewState.ACADEMY_VIEW:
+        return <AcademyView />;
+      // ── SPARINGI ────────────────────────────────────────────────────────────
+      case ViewState.PRE_MATCH_FRIENDLY_STUDIO:
+        return <PreMatchFriendlyStudioView />;
+      case ViewState.MATCH_LIVE_FRIENDLY:
+        return <FriendlyMatchLiveView />;
+      case ViewState.POST_MATCH_FRIENDLY_STUDIO:
+        return <PostMatchFriendlyStudioView />;
+  return <PreMatchCLFinalView />;
+case ViewState.POST_MATCH_CL_FINAL:
+  return <PostMatchCLFinalView />;
+case ViewState.POLISH_CUP_BRACKET:
+  return <PolishCupBracketView />;
+
+      case ViewState.POLISH_CUP_FINALISTS:
+        return <PolishCupFinalistsView />;
+
+      case ViewState.START_MENU:
+        return <StartMenu />;
+      case ViewState.MANAGER_CREATION:
+        return <ManagerCreation />;
+      case ViewState.TEAM_SELECTION:
+        return <TeamSelection />;
+      case ViewState.SQUAD_IMPORT:
+        return <SquadImportView />;
+      case ViewState.GAME_MANUAL:
+        return <GameManual />;
+      case ViewState.TRAINING_VIEW:
+        return (
+         
+            <TrainingView />
+          
+        );
+      case ViewState.DASHBOARD:
+        return <Dashboard />
+          
+      case ViewState.LEAGUE_TABLES:
+        return (
+           <div className="min-h-screen bg-slate-900 p-6">
+            <LeagueTables />
+          </div>
+        );
+      case ViewState.LEAGUE_STATS:
+        return <LeagueStatsView />;
+      case ViewState.CALENDAR_DEBUG:
+        return <CalendarDebugView />;
+      case ViewState.SQUAD_VIEW:
+        return (
+           <div className="min-h-screen text-slate-50 p-6">
+            <SquadView />
+          </div>
+        );
+      case ViewState.CLUB_DETAILS:
+        return <ClubDetails />;
+      case ViewState.PLAYER_CARD:
+        return <PlayerCard />;
+        case ViewState.CONTRACT_MANAGEMENT:
+        return <ContractManagementView />;
+
+   
+      case ViewState.FREE_AGENT_NEGOTIATION:
+        return <FreeAgentNegotiationView />;
+      case ViewState.TRANSFER_OFFER:
+        return <TransferOfferView />;
+      case ViewState.TRANSFER_PLAYER_NEGOTIATION:
+        return <TransferPlayerNegotiationView />;
+      case ViewState.INCOMING_OFFER:
+        return <IncomingOfferView />;
+
+         case ViewState.COACH_CARD:
+        return <CoachCard />;
+        case ViewState.EDITOR:
+        return <EditorView />;
+      case ViewState.JOB_MARKET: // -> tutaj wstaw kod
+        return <JobMarketView />;
+      case ViewState.TRANSFER_NEWS:
+        return <TransferNewsView />;
+      case ViewState.AI_MARKET_NEWS:
+        return <AiMarketNewsView />;
+      case ViewState.REFEREE_CARD:
+        return <RefereeCard />;
+      case ViewState.REFEREE_LIST:
+        return (
+           <div className="min-h-screen bg-transparent text-slate-50 p-6">
+            <RefereeListView />
+          </div>
+        );
+      case ViewState.HIDDEN_LEAGUE:
+        return <HiddenLeagueViewer />;
+      case ViewState.CUP_DRAW:
+        return <CupDrawView />;
+              case ViewState.CL_DRAW:
+        return <CLDrawView />;
+
+case ViewState.CL_GROUP_DRAW:
+        return <CLGroupDrawView />;
+
+        case ViewState.CL_R16_DRAW:
+        return <CLR16DrawView />;
+
+ case ViewState.CL_QF_DRAW:
+        return <CLQFDrawView />;
+
+      case ViewState.CL_SF_DRAW:
+        return <CLSFDrawView />;
+
+      case ViewState.CL_FINAL_DRAW:
+        return <CLFinalDrawView />;
+
+        case ViewState.MATCH_HISTORY_BROWSER:
+        return (
+          <div className="min-h-screen bg-transparent text-slate-50 p-6">
+            <MatchHistoryView />
+          </div>
+        );
+      case ViewState.TRANSFER_WINDOW:
+        return (
+          <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6 text-center">
+            <div className="max-w-md p-10 bg-slate-800 rounded-2xl border border-slate-700 shadow-2xl">
+              <span className="text-6xl mb-6 block">📝</span>
+              <h2 className="text-3xl font-bold text-white mb-2">Okno Transferowe</h2>
+              <p className="text-slate-400 mb-8 font-light italic">
+                Tutaj będziesz mógł negocjować kontrakty i wzmacniać swój skład. (Stage 10)
+              </p>
+              <button 
+                onClick={() => navigateTo(ViewState.DASHBOARD)}
+                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-lg transition-colors"
+              >
+                Powrót do Dashboardu
+              </button>
+            </div>
+          </div>
+        );
+      case ViewState.PRE_MATCH_STUDIO:
+        return <PreMatchStudioView />;
+      case ViewState.MATCH_LIVE:
+        return <MatchLiveView />;
+      case ViewState.MATCH_POST:
+        return <PostMatchStudioView />;
+      case ViewState.MATCH_PREVIEW:
+        return (
+          <div className="min-h-screen bg-slate-950 text-slate-50 p-6">
+            <MatchView />
+          </div>
+        );
+      
+      // Polish Cup Engine
+      case ViewState.PRE_MATCH_CUP_STUDIO:
+        return <PreMatchCupStudioView />;
+      case ViewState.MATCH_LIVE_CUP:
+        return <MatchLiveViewPolishCupSimulation />;
+      case ViewState.POST_MATCH_CUP_STUDIO:
+        return <PostMatchCupStudioView />;
+      case ViewState.SCORE_RESULTS_POLISH_CUP:
+        return <ScoreResultsPolishCup />;
+
+      case ViewState.EUROPEAN_CLUBS:
+        return <EuropeanClubsView />;
+
+      case ViewState.UEFA_SUPER_CUP_VIEW:
+        return <UEFASuperCupView />;
+
+      default:
+        return (
+          <div className="flex items-center justify-center h-screen">
+            <h1 className="text-3xl font-bold text-slate-500">
+              Work In Progress: {viewState}
+            </h1>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <>
+      <main>{renderView()}</main>
+      <GameNotification />
+    </>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <GameProvider>
+      <AppContent />
+    </GameProvider>
+  );
+};
+
+export default App;
